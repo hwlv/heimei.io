@@ -6,7 +6,7 @@ title = 'stone小站'
 
 enableEmoji = true
 hasCJKLanguage = true
-preserveTaxonomyNames = true
+# preserveTaxonomyNames = true
 
 # 主导航菜单
 name = "首页"
