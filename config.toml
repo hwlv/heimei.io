@@ -1,4 +1,4 @@
-baseURL = 'http://heimei.io/'
+baseURL = 'https://heimei.io/'
 languageCode = "zh-CN"
 paginate = 12
 theme = "LeaveIt"
