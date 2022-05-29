@@ -1,2 +1,0 @@
-# heimei.io
-heimei blog

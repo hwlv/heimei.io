@@ -1,0 +1,33 @@
+baseURL = 'http://heimei.io/'
+languageCode = "zh-CN"
+paginate = 12
+theme = "LeaveIt"
+title = 'stone小站'
+
+enableEmoji = true
+hasCJKLanguage = true
+preserveTaxonomyNames = true
+
+# 主导航菜单
+name = "首页"
+url = "/"
+weight = "1"
+
+[menu]
+[[menu.main]]
+name = "文章"
+url = "/post"
+weight = "2"
+
+[[menu.main]]
+name = "标签"
+url = "/tags/"
+weight = 3
+[[menu.main]]
+name = "关于"
+url = "/about"
+weight = "4"
+
+[params]
+avatar = "/img/favicon.png"
+subtitle = "抛弃世俗之浮躁，留我钻研之刻苦"
