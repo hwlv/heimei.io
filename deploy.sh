@@ -12,4 +12,4 @@ git pull
 cd /usr/share/nginx/html
 rm -rf *
 
-cd /app/heimei.io/public/* /usr/share/nginx/html
+cp /app/heimei.io/public/* /usr/share/nginx/html
