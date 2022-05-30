@@ -38,5 +38,20 @@
 </description>
     </item>
     
+    <item>
+      <title>友情链接</title>
+      <link>https://heimei.io/friends/</link>
+      <pubDate>Sun, 19 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://heimei.io/friends/</guid>
+      <description>&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://eddycjy.com/&#34;&gt;煎鱼&lt;/a&gt;：连个 HTTPS 都没，可能是我的脑子进煎鱼了。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://aofeisheng.com/&#34;&gt;Aofei Sheng&lt;/a&gt;：没有看过傲飞博客的人，是不够性感的。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://xunhuan.me/&#34;&gt;送命或寻欢&lt;/a&gt;：此寻欢非彼寻欢，但不影响你我送命。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.red/&#34;&gt;E99p1ant&lt;/a&gt;：入坑 A-SOUL，你值得拥有&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
   </channel>
 </rss>

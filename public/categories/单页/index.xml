@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>单页 on stone小站</title>
+    <link>https://heimei.io/categories/%E5%8D%95%E9%A1%B5/</link>
+    <description>Recent content in 单页 on stone小站</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sun, 19 Apr 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://heimei.io/categories/%E5%8D%95%E9%A1%B5/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>友情链接</title>
+      <link>https://heimei.io/friends/</link>
+      <pubDate>Sun, 19 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://heimei.io/friends/</guid>
+      <description>煎鱼：连个 HTTPS 都没，可能是我的脑子进煎鱼了。 Aofei Sheng：没有看过傲飞博客的人，是不够性感的。 送命或寻欢：此寻欢非彼寻欢，但不影响你我送命。 E</description>
+    </item>
+    
+  </channel>
+</rss>
