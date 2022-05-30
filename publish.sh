@@ -11,7 +11,7 @@ sshpass -p '57987a2a09e'  ssh root@144.48.243.96 > /dev/null 2>&1 <<sshoffmark
 
 cd /app/heimei.io
 git pull
-
+chmod 777 deploy.sh
 ./deploy.sh
 echo "deploy end..."
 
