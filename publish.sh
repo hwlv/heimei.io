@@ -1,12 +1,15 @@
 #/bin/bash
-echo "start publish...";
+echo "start package ...";
 hugo -D ;
+echo "start git push ...";
+
 git add . ;
 git commit -m "nromal publish" ;
 git push ;
 # scp -r /Users/apple/dev/mygithub/heimei.io/public root@144.48.243.96:/usr/share/nginx/html
 # heimei.io
 
+echo "start exec deploy.sh";
 sshpass -p '57987a2a09e'  ssh root@144.48.243.96 > /dev/null 2>&1 <<sshoffmark ;
 
 cd /app/heimei.io
