@@ -1,15 +1,19 @@
-
-echo "start deploy..."
-# hugo -D 
+#/bin/bash
+echo "start publish..."
+hugo -D 
 git add .
 git commit -m "nromal publish"
 git push
 # scp -r /Users/apple/dev/mygithub/heimei.io/public root@144.48.243.96:/usr/share/nginx/html
 # heimei.io
-# sshpass -p '57987a2a09e' ssh root@144.48.243.96 "cd /home && touch a.txt "
 
+sshpass -p '57987a2a09e'  ssh root@144.48.243.96 > /dev/null 2>&1 <<sshoffmark
 
-# cd /usr/share/nginx/html
-# rm -rf *
+cd /app/heimei.io
+git pull
 
+./deploy.sh
 echo "deploy end..."
+
+exit
+sshoffmark
