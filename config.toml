@@ -2,6 +2,7 @@ baseURL = 'https://heimei.io/'
 languageCode = "zh-CN"
 paginate = 12
 theme = "LeaveIt"
+themesDir = "themes"
 title = 'stone小站'
 
 enableEmoji = true
