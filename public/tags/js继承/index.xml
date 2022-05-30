@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>js继承 on stone小站</title>
+    <link>https://heimei.io/tags/js%E7%BB%A7%E6%89%BF/</link>
+    <description>Recent content in js继承 on stone小站</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 28 May 2022 23:39:07 +0800</lastBuildDate><atom:link href="https://heimei.io/tags/js%E7%BB%A7%E6%89%BF/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>js继承</title>
+      <link>https://heimei.io/posts/js%E7%BB%A7%E6%89%BF/</link>
+      <pubDate>Sat, 28 May 2022 23:39:07 +0800</pubDate>
+      
+      <guid>https://heimei.io/posts/js%E7%BB%A7%E6%89%BF/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
