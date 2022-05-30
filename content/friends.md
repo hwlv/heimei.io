@@ -8,3 +8,5 @@ date: 2020-04-19
 - [Aofei Sheng](https://aofeisheng.com/)：没有看过傲飞博客的人，是不够性感的。
 - [送命或寻欢](https://xunhuan.me/)：此寻欢非彼寻欢，但不影响你我送命。
 - [E99p1ant](https://github.red/)：入坑 A-SOUL，你值得拥有
+- [无闻](https://unknwon.cn/)：抛弃世俗之浮躁，留我钻研之刻苦
+
