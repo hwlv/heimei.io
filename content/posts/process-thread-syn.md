@@ -1,9 +1,9 @@
 ---
 title: "进程、线程、协程及JS协程"
 date: 2022-05-28T23:39:07+08:00
-draft: true
-categories: ["面试"]
-tags: ["闭包", "词法环境", "js" ]
+draft: false
+categories: ["基本知识"]
+tags: ["进程", "线程", "协程" ]
 ---
 
 ### 进程
