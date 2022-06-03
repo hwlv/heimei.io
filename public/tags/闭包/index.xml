@@ -16,5 +16,14 @@
       <description>说说闭包 一个函数和对其周围状态（lexical environment，词法环境）的引用捆绑在一起（或者说函数被引用包围），这样的组合就是闭包</description>
     </item>
     
+    <item>
+      <title>进程、线程、协程及JS协程</title>
+      <link>https://heimei.io/posts/process-thread-syn/</link>
+      <pubDate>Sat, 28 May 2022 23:39:07 +0800</pubDate>
+      
+      <guid>https://heimei.io/posts/process-thread-syn/</guid>
+      <description>进程 进程（Process）是计算机中的程序关于某数据集合上的一次运行活动，是系统进行资源分配和调度的基本单位，是操作系统结构的基础。在早期面</description>
+    </item>
+    
   </channel>
 </rss>
