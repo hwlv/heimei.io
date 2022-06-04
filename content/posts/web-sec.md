@@ -274,7 +274,7 @@ CSP（内容安全策略）用于检测和减轻 Web 站点的特定类型的攻
 
 可以设置的内容有：
 
-![browser-csp-value](./imgs/browser-csp-value.png)
+![browser-csp-value](/imgs/browser-csp-value.png)
 
 例如，指定内容能从 `文档源`、`www.example.com` 和 任何子域为 `example2.com` 的源加载：
 
