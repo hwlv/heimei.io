@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  
+  
+  
+  
+  
+  <link rel="next" href="https://heimei.io/posts/process-thread-syn/" />
+  <link rel="canonical" href="https://heimei.io/posts/web-sec/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+            | stone小站
+       
+  </title>
+  <meta name="title" content=" | stone小站">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "https:\/\/heimei.io\/"
+    },
+    "articleSection" : "posts",
+    "name" : "",
+    "headline" : "",
+    "description" : "XSS 攻击 什么是 XSS Cross-Site Scripting（跨站脚本攻击）简称 XSS，是一种代码注入攻击。攻击者通过在目标网站上注入恶意脚本，使之在用户的浏览器上运",
+    "inLanguage" : "zh-CN",
+    "author" : "",
+    "creator" : "",
+    "publisher": "",
+    "accountablePerson" : "",
+    "copyrightHolder" : "",
+    "copyrightYear" : "0001",
+    "datePublished": "0001-01-01 00:00:00 \u002b0000 UTC",
+    "dateModified" : "0001-01-01 00:00:00 \u002b0000 UTC",
+    "url" : "https:\/\/heimei.io\/posts\/web-sec\/",
+    "wordCount" : "2570",
+    "keywords" : [  "stone小站"]
+}
+</script>
+
+</head>
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://heimei.io/">stone小站</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts" title="">文章</a>
+                
+                <a class="menu-item" href="/tags/" title="">标签</a>
+                
+                <a class="menu-item" href="/about" title="">关于</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://heimei.io/">stone小站</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts" title="">文章</a>
+                
+                <a class="menu-item" href="/tags/" title="">标签</a>
+                
+                <a class="menu-item" href="/about" title="">关于</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline"></h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="https://heimei.io/" rel="author"></a> with ♥ 
+                <span class="post-time">
+                on <time datetime=0001-01-01 itemprop="datePublished">January 1, 0001</time>
+                </span>
+                in
+                
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+            
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          <h1 id="xss-攻击">XSS 攻击</h1>
+<h2 id="什么是-xss">什么是 XSS</h2>
+<p><code>Cross-Site Scripting</code>（跨站脚本攻击）简称 XSS，是一种代码注入攻击。攻击者通过在目标网站上注入恶意脚本，使之在用户的浏览器上运行。</p>
+<blockquote>
+<p>XSS 的本质是：恶意代码未经过滤，与网站正常的代码混在一起；浏览器无法分辨哪些脚本是可信的，导致恶意脚本被执行。</p>
+</blockquote>
+<h2 id="xss-攻击方式">XSS 攻击方式</h2>
+<h3 id="1反射型">1、反射型</h3>
+<blockquote>
+<p>浏览器向服务器发出请求时，XSS 代码出现在 URL 中，作为输入提交到服务器端，服务器端解析后响应，XSS 代码随响应内容一起传回浏览器，最后浏览器解析执行响应内容，XSS 代码同时也被执行。
+这个过程像一次反射，所以称作反射型攻击。</p>
+</blockquote>
+<p>例如：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">https</span><span style="color:#f92672">:</span><span style="color:#75715e">//a.com/?xss=&lt;img src=&#34;null&#34; onerror=&#34;alert(1)&#34; /&gt;
+</span></span></span></code></pre></div><p>如果上面的查询参数 <code>xss</code> 直接显示在页面中，那么当访问这个页面后，就会弹出数字 1。这样就进行了一次简单的 XSS 攻击。</p>
+<p><strong>对于反射型 XSS 攻击，有以下几点需要注意：</strong></p>
+<ul>
+<li>
+<p>攻击代码在 URL 中</p>
+</li>
+<li>
+<p>服务端要解析 URL 中的查询参数，并返回给页面进行渲染</p>
+</li>
+<li>
+<p>攻击使用的标签不限于 <code>img</code>，也可以是 <code>iframe，script</code> 等</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// 加载一个页面
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">https</span><span style="color:#f92672">:</span><span style="color:#75715e">//a.com/?xss=&lt;iframe src=&#34;//baidu.com&#34;&gt;&lt;/iframe&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 执行一个 JS 脚本
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">https</span><span style="color:#f92672">:</span><span style="color:#75715e">//a.com/?xss=&lt;script&gt;document.body.innerHTML=&#39;you are attacked&#39;;&lt;/script&gt;
+</span></span></span></code></pre></div></li>
+</ul>
+<blockquote>
+<p>这种方法有些浏览器会检测出来并阻止掉整个页面，也就是浏览器自带的 XSS 防御功能。</p>
+</blockquote>
+<h3 id="2存储型">2、存储型</h3>
+<blockquote>
+<p>这种攻击方式与反射型的差别在于，存储型的攻击代码会储存在服务端（数据库、内存、文件中等），下次请求页面不用再次提交 XSS 代码</p>
+</blockquote>
+<h3 id="3dom-型">3、DOM 型</h3>
+<blockquote>
+<p>这种 XSS 攻击类型效果上和反射型一样，不过由于历史原因和攻击方式，将其单独称之为 DOM 型攻击。当然也可以将其归类于反射型。</p>
+</blockquote>
+<p>它的作用方式是通过修改页面中的 DOM 节点形成 XSS 攻击。</p>
+<h2 id="xss-攻击的注入点">XSS 攻击的注入点</h2>
+<ul>
+<li>
+<p>HTML 节点内容</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>  文本中带有JS代码&lt;<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">alert</span>(<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span></code></pre></div></li>
+<li>
+<p>HTML 属性</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- 例一 --&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;javascript:alert(&#39;这是XSS脚本&#39;);&#34;</span>&gt;&lt;/<span style="color:#f92672">a</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- 例二 --&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">img</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;null&#34;</span> <span style="color:#a6e22e">onerror</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;alert(&#39;XSS脚本&#39;);&#34;</span> /&gt;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- 这里 src 属性的值是 `null&#34; onerror=&#34;alert(&#39;XSS脚本&#39;);` 这个值改变了双引号的边界，从而实现 XSS 攻击。 --&gt;</span>
+</span></span></code></pre></div></li>
+<li>
+<p>JS 代码</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>; <span style="color:#75715e">// 变量初始值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#960050;background-color:#1e0010">↓</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;hello&#34;</span>;<span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#39;这是XSS脚本&#39;</span>);<span style="color:#e6db74">&#34;&#34;</span>; <span style="color:#75715e">// 获取数据后的值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 这里获取到的数据为 hello&#34;;alert(&#39;这是XSS脚本&#39;);&#34; 其中包含的特殊符号改变了字符串的边界，从而实现了 XSS 攻击。
+</span></span></span></code></pre></div></li>
+<li>
+<p>富文本</p>
+<blockquote>
+<p>由于富文本编辑器是通过添加 HTML 标签和属性来实现的，所以如果用户输入的信息中包含一些恶意脚本代码，那么这些恶意脚本代码也会被执行。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="防御-xss-攻击">防御 XSS 攻击</h2>
+<h3 id="编写代码防御">编写代码防御</h3>
+<blockquote>
+<p>防御大致思路：将用户输入的数据进行编码（转义），然后使用的时候进行解码，解码的同时进行过滤，把危险的几种标签（<code>script、style、link、iframe、frame、img</code>）、所有 JS 事件进行过滤。</p>
+</blockquote>
+<p>1、转义</p>
+<p>（1）对 HTML 代码进行转义</p>
+<p>一般会对下面的字符进行转义：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">字符</th>
+<th style="text-align:center">实体编号</th>
+<th style="text-align:left">实体名称</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>&lt;</code></td>
+<td style="text-align:center"><code>&amp;#60;</code></td>
+<td style="text-align:left"><code>&amp;lt;</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>&gt;</code></td>
+<td style="text-align:center"><code>&amp;#62;</code></td>
+<td style="text-align:left"><code>&amp;gt;</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>'</code></td>
+<td style="text-align:center"><code>&amp;#39;</code></td>
+<td style="text-align:left"><code>&amp;apos;</code>(IE 不支持)</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>&quot;</code></td>
+<td style="text-align:center"><code>&amp;#34;</code></td>
+<td style="text-align:left"><code>&amp;quot;</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>&amp;</code></td>
+<td style="text-align:center"><code>&amp;#38;</code></td>
+<td style="text-align:left"><code>&amp;amp;</code></td>
+</tr>
+<tr>
+<td style="text-align:center">空格</td>
+<td style="text-align:center"><code>&amp;#160;</code></td>
+<td style="text-align:left"><code>&amp;nbsp;</code></td>
+</tr>
+</tbody>
+</table>
+<p>示例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">escapeHtml</span>(<span style="color:#a6e22e">str</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">str</span>) <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// 首先对 &amp; 符号进行转义（转义后的字符也带有 &amp;，这样可以防止重复转义）
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">str</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">str</span>.<span style="color:#a6e22e">replace</span>(<span style="color:#e6db74">/&amp;/g</span>, <span style="color:#e6db74">&#39;&amp;amp;&#39;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">str</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">str</span>.<span style="color:#a6e22e">replace</span>(<span style="color:#e6db74">/&lt;/g</span>, <span style="color:#e6db74">&#39;&amp;lt;&#39;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">str</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">str</span>.<span style="color:#a6e22e">replace</span>(<span style="color:#e6db74">/&gt;/g</span>, <span style="color:#e6db74">&#39;&amp;gt;&#39;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">str</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">str</span>.<span style="color:#a6e22e">replace</span>(<span style="color:#e6db74">/&#39;/g</span>, <span style="color:#e6db74">&#39;&amp;#39;&#39;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">str</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">str</span>.<span style="color:#a6e22e">replace</span>(<span style="color:#e6db74">/&#34;/g</span>, <span style="color:#e6db74">&#39;&amp;quot;&#39;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">str</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">str</span>.<span style="color:#a6e22e">replace</span>(<span style="color:#e6db74">/\s/g</span>, <span style="color:#e6db74">&#39;&amp;#160;&#39;</span>); <span style="color:#75715e">// 空白字符
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">str</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">str</span>.<span style="color:#a6e22e">replace</span>(<span style="color:#e6db74">/\n/g</span>, <span style="color:#e6db74">&#39;&lt;br&gt;&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">str</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>（2）对 JS 代码进行转义</p>
+<p>如果数据中存在某些特殊符号，就会使得 JS 中的字符边界改变，从而产生新的 JS 语句，这些新的 JS 语句可以是任意的恶意脚本。</p>
+<p>例如：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// 有一个数据
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 当从服务端获取数据后 data 的值为
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;hello&#34;</span>;<span style="color:#a6e22e">alert</span>(<span style="color:#ae81ff">1</span>);<span style="color:#e6db74">&#34;&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 也就是说从服务端接收的数据为
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">hello</span><span style="color:#e6db74">&#34;;alert(1);&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 这个数据改变了字符串的边界，并产生了另外的一些 JS 语句
+</span></span></span></code></pre></div><p>转义的方法：</p>
+<p>将 <code>'</code> <code>&quot;</code> <code>\</code> 等进行转义</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">escapeJS</span>(<span style="color:#a6e22e">str</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">str</span>) <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">str</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">str</span>.<span style="color:#a6e22e">replace</span>(<span style="color:#e6db74">/\\/</span>, <span style="color:#e6db74">&#39;\\\\&#39;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">str</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">str</span>.<span style="color:#a6e22e">replace</span>(<span style="color:#e6db74">/&#34;/</span>, <span style="color:#e6db74">&#39;\\&amp;quot;&#39;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">str</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">str</span>.<span style="color:#a6e22e">replace</span>(<span style="color:#e6db74">/&#39;/</span>, <span style="color:#e6db74">&#39;\\&amp;#39;&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">str</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>上面的转义方法比较麻烦，而且可能会漏掉某些特殊字符，这里使用 <code>JSON.stringify</code> 进行转义最保险：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">stringify</span>(<span style="color:#a6e22e">str</span>);
+</span></span></code></pre></div><p>2、校正</p>
+<p>将转义后的数据反转义得到字符串，使用 <code>DOM Parse</code> 转换字符串为 DOM 对象。然后进行过滤操作。</p>
+<p>3、过滤</p>
+<ul>
+<li>
+<p>过滤危险的标签。例如：<code>script、style、iframe、frame、img</code> 等</p>
+</li>
+<li>
+<p>过滤文本中包含的 JS 事件</p>
+</li>
+<li>
+<p><strong>对富文本过滤</strong>（一般在客户端进行）</p>
+<blockquote>
+<p>过滤富文本相对来说比较复杂。由于富文本的实现原理是通过添加 HTML 标签和 CSS 属性，所以并不能直接将所有的标签和属性全过滤掉。有两种可选的方法：</p>
+<ul>
+<li>
+<p>黑名单过滤
+过滤危险的标签、属性、方法、以及一些特殊的代码（<code>javascript:alert(1);</code>）等</p>
+</li>
+<li>
+<p>白名单过滤
+只保留安全的标签和属性</p>
+</li>
+</ul>
+</blockquote>
+<p>过滤富文本时，需要解析 HTML，这里推荐使用第三方库 <a href="https://github.com/cheeriojs/cheerio">cheerio</a> 来解析 HTML。使用 cheerio 解析 HTML 之后，会返回一个类似 DOM 的对象。</p>
+<p>借助 cheerio 进行 XSS 过滤的示例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// cheerio 解析后返回的对象如下：
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>[
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;tag&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;img&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">attribs</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">src</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;null&#39;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">onerror</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;alert(1)&#39;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">xssFilter</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">html</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">html</span>) <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">cheerio</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#a6e22e">cheerio</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">$</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">cheerio</span>.<span style="color:#a6e22e">load</span>(<span style="color:#a6e22e">html</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// 过滤白名单（举例！）
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">whiteList</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">img</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;src&#39;</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">font</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;size&#39;</span>, <span style="color:#e6db74">&#39;color&#39;</span>]
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#39;*&#39;</span>).<span style="color:#a6e22e">forEach</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">index</span>, <span style="color:#a6e22e">elem</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">whiteList</span>[<span style="color:#a6e22e">elem</span>.<span style="color:#a6e22e">name</span>]) {
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// 元素名称不在白名单中
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#a6e22e">$</span>(<span style="color:#a6e22e">elem</span>).<span style="color:#a6e22e">remove</span>();
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">attr</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">elem</span>.<span style="color:#a6e22e">attribs</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">whiteList</span>[<span style="color:#a6e22e">elem</span>.<span style="color:#a6e22e">name</span>].<span style="color:#a6e22e">includes</span>(<span style="color:#a6e22e">attr</span>)) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">$</span>(<span style="color:#a6e22e">elem</span>).<span style="color:#a6e22e">attr</span>(<span style="color:#a6e22e">attr</span>, <span style="color:#66d9ef">null</span>); <span style="color:#75715e">// 移除这个属性
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">$</span>.<span style="color:#a6e22e">html</span>();
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div></li>
+</ul>
+<p>XSS 过滤的第三方库推荐：<a href="https://github.com/leizongmin/js-xss">js-xss</a></p>
+<p>使用 <code>js-xss</code> 库过滤 XSS 脚本示例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">xssFilter</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">html</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">html</span>) <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">xss</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;xss&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">xss</span>(<span style="color:#a6e22e">html</span>, {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">whiteList</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">img</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;src&#39;</span>],
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">font</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;size&#39;</span>, <span style="color:#e6db74">&#39;color&#39;</span>]
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">onIgnoreTag</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>() {
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  });
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><blockquote>
+<p>第三方库过滤 XSS 适用于快速开发。如果业务要求对每一种情况进行精确控制，那么还是需要自己手写过滤代码。</p>
+</blockquote>
+<h3 id="设置-http-请求头-csp-防御-xss">设置 HTTP 请求头 CSP 防御 XSS</h3>
+<p>CSP（内容安全策略）用于检测和减轻 Web 站点的特定类型的攻击，例如：XSS 和数据注入等。</p>
+<p>该安全策略的实现基于一个 HTTP 请求头： <code>Content-Security-Policy</code>。通过设置 CSP 的值来<strong>指定网页中哪些内容可以执行，哪些内容不可以执行</strong>。只有设置的内容才能被执行，没有设置的都会被阻止。</p>
+<p>可以设置的内容有：</p>
+<p><img src="./imgs/browser-csp-value.png" alt="browser-csp-value"></p>
+<p>例如，指定内容能从 <code>文档源</code>、<code>www.example.com</code> 和 任何子域为 <code>example2.com</code> 的源加载：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">Content</span><span style="color:#f92672">-</span><span style="color:#a6e22e">Security</span><span style="color:#f92672">-</span><span style="color:#a6e22e">Policy</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">default</span><span style="color:#f92672">-</span><span style="color:#a6e22e">src</span> <span style="color:#e6db74">&#39;self&#39;</span> <span style="color:#a6e22e">www</span>.<span style="color:#a6e22e">example</span>.<span style="color:#a6e22e">com</span> <span style="color:#f92672">*</span>.<span style="color:#a6e22e">example2</span>.<span style="color:#a6e22e">com</span>
+</span></span><span style="display:flex;"><span>                              <span style="color:#960050;background-color:#1e0010">↓</span>        <span style="color:#960050;background-color:#1e0010">↓</span>           <span style="color:#960050;background-color:#1e0010">↓</span>
+</span></span><span style="display:flex;"><span>                           <span style="color:#a6e22e">策略指令</span>   <span style="color:#a6e22e">关键字</span>      <span style="color:#a6e22e">源列表</span> (<span style="color:#a6e22e">可有多个值</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#a6e22e">用空格间隔</span>)
+</span></span></code></pre></div><p>其中，<code>default-src</code> 包括：</p>
+<ul>
+<li><code>child-src</code></li>
+<li><code>connect-src</code></li>
+<li><code>font-src</code></li>
+<li><code>img-src</code></li>
+<li><code>media-src</code></li>
+<li><code>object-src</code></li>
+<li><code>script-src</code></li>
+<li><code>style-src</code></li>
+</ul>
+<p>示例：</p>
+<p><img src="./imgs/github-csp-example.png" alt="github-csp-example"></p>
+<p>如图不仅设置了网站中允许执行的内容，而且设置了 <code>block-all-mixed-content</code> (只能通过 HTTPS 加载资源) 和 <code>frame-ancestors</code> (防御点击劫持攻击)</p>
+<p>学习资料：<a href="https://developer.mozilla.org/zh-CN/docs/Web/Security/CSP">MDN：CSP (内容安全策略)</a></p>
+<h3 id="设置-http-响应头-x-xss-protection-防御-xss">设置 HTTP 响应头 X-XSS-Protection 防御 XSS</h3>
+<p>通过设置 HTTP 响应头：<code>X-XSS-Protection: 1; mode=block</code></p>
+<p>这个请求头的其他值如下：</p>
+<p><img src="./imgs/browser-xss-protectino.png" alt="browser-xss-protectino"></p>
+<h3 id="浏览器自带-xss-防御">浏览器自带 XSS 防御</h3>
+<blockquote>
+<p>关于浏览器自带的 XSS 防御，只能防御反射型的 XSS 攻击。并且如果反射型的 XSS 代码被注入到 JS 中，那么浏览器并不会拦截。</p>
+</blockquote>
+<h3 id="设置-httponly">设置 HttpOnly</h3>
+<p>通过设置 HttpOnly 使得 Cookies 只能通过 <code>Set-Cookie</code> 来设置，这样可以避免 XSS 代码窃取 Cookies。</p>
+<hr>
+<p>参考资料：</p>
+<ul>
+<li><a href="https://tech.meituan.com/2018/09/27/fe-security.html">前端安全系列（一）：如何防止XSS攻击？</a></li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=https://heimei.io/posts/web-sec/>https://heimei.io/posts/web-sec/</span>
+            </p>
+            
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="https://heimei.io/">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+         
+        
+        <a href="https://heimei.io/posts/process-thread-syn/" class="next" rel="next" title="进程、线程、协程及JS协程">进程、线程、协程及JS协程&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+        <script src="https://utteranc.es/client.js"
+            repo="hwlv/heimei.io"
+            issue-term="pathname"
+            label="utterances"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+        </script>
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+
+         
+		  <span><a href="https://heimei.io/friends">友情链接</a></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+    
+     <link href="//lib.baomitu.com/lightgallery/1.6.11/css/lightgallery.min.css" rel="stylesheet">  
+      
+     <script src="/js/vendor_gallery.min.js" async="" ></script>
+    
+  
+
+
+
+
+<script defer data-domain="heimei.io" src="https://plausible.io/js/plausible.js"></script>
+
+     </div>
+  </body>
+</html>
