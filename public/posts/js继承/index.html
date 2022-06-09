@@ -46,7 +46,7 @@
     "articleSection" : "posts",
     "name" : "js继承",
     "headline" : "js继承",
-    "description" : "",
+    "description" : "什么是继承 继承（inheritance）是面向对象软件技术当中的一个概念。 如果一个类别B“继承自”另一个类别A，就把这个B称为“A的子类”，",
     "inLanguage" : "zh-CN",
     "author" : "",
     "creator" : "",
@@ -57,7 +57,7 @@
     "datePublished": "2022-05-28 23:39:07 \u002b0800 CST",
     "dateModified" : "2022-05-28 23:39:07 \u002b0800 CST",
     "url" : "https:\/\/heimei.io\/posts\/js%E7%BB%A7%E6%89%BF\/",
-    "wordCount" : "0",
+    "wordCount" : "1650",
     "keywords" : [ "js继承", "stone小站"]
 }
 </script>
@@ -121,7 +121,7 @@
                 in
                 <i class="iconfont icon-folder"></i>
                 <span class="post-category">
-                        <a href="https://heimei.io/categories/%E9%9D%A2%E8%AF%95/"> 面试 </a>
+                        <a href="https://heimei.io/categories/js%E5%9F%BA%E7%A1%80/"> js基础 </a>
                         
                 </span>
         </div>
@@ -129,6 +129,8 @@
     <div class="post-content">
         
 
+        
+            
         
 
         
@@ -142,7 +144,193 @@
           
           
 
-          
+          <p><img src="../../static/img/5d9c4450-72a3-11eb-85f6-6fac77c0c9b3.png" alt="img"></p>
+<h2 id="什么是继承">什么是继承</h2>
+<p>继承（inheritance）是面向对象软件技术当中的一个概念。</p>
+<p>如果一个类别B“继承自”另一个类别A，就把这个B称为“A的子类”，而把A称为“B的父类别”也可以称“A是B的超类”</p>
+<ul>
+<li>继承的优点</li>
+</ul>
+<p>继承可以使得子类具有父类别的各种属性和方法，而不需要再次编写相同的代码</p>
+<p>在子类别继承父类别的同时，可以重新定义某些属性，并重写某些方法，即覆盖父类别的原有属性和方法，使其获得与父类别不同的功能</p>
+<p>虽然<code>JavaScript</code>并不是真正的面向对象语言，但它天生的灵活性，使应用场景更加丰富</p>
+<p>关于继承，我们举个形象的例子：</p>
+<p>定义一个类（Class）叫汽车，汽车的属性包括颜色、轮胎、品牌、速度、排气量等</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Car</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">constructor</span>(<span style="color:#a6e22e">color</span>,<span style="color:#a6e22e">speed</span>){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">color</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">color</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">speed</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">speed</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>由汽车这个类可以派生出“轿车”和“货车”两个类，在汽车的基础属性上，为轿车添加一个后备厢、给货车添加一个大货箱</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// 货车
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Truck</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Car</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">constructor</span>(<span style="color:#a6e22e">color</span>,<span style="color:#a6e22e">speed</span>){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">super</span>(<span style="color:#a6e22e">color</span>,<span style="color:#a6e22e">speed</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">Container</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span> <span style="color:#75715e">// 货箱
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>这样轿车和货车就是不一样的，但是二者都属于汽车这个类，汽车、轿车继承了汽车的属性，而不需要再次在“轿车”中定义汽车已经有的属性</p>
+<p>在“轿车”继承“汽车”的同时，也可以重新定义汽车的某些属性，并重写或覆盖某些属性和方法，使其获得与“汽车”这个父类不同的属性和方法</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Truck</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Car</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">constructor</span>(<span style="color:#a6e22e">color</span>,<span style="color:#a6e22e">speed</span>){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">super</span>(<span style="color:#a6e22e">color</span>,<span style="color:#a6e22e">speed</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">color</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;black&#34;</span> <span style="color:#75715e">//覆盖
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">Container</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span> <span style="color:#75715e">// 货箱
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>从这个例子中就能详细说明汽车、轿车以及卡车之间的继承关系</p>
+<h2 id="实现方式">实现方式</h2>
+<p>下面给出<code>JavaScripy</code>常见的继承方式：</p>
+<ul>
+<li>原型链继承</li>
+<li>构造函数继承（借助 call）</li>
+<li>组合继承</li>
+<li>原型式继承</li>
+<li>寄生式继承</li>
+<li>寄生组合式继承</li>
+</ul>
+<h3 id="原型链继承">原型链继承</h3>
+<p>原型链继承是比较常见的继承方式之一，其中涉及的构造函数、原型和实例，三者之间存在着一定的关系，即每一个构造函数都有一个原型对象，原型对象又包含一个指向构造函数的指针，而实例则包含一个原型对象的指针</p>
+<p>举个例子</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">Parent</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;parent1&#39;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">play</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>]
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">Child</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">type</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;child2&#39;</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Child1</span>.<span style="color:#a6e22e">prototype</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Parent</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Child</span>())
+</span></span></code></pre></div><p>上面代码看似没问题，实际存在潜在问题</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">s1</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Child2</span>();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">s2</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Child2</span>();
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">s1</span>.<span style="color:#a6e22e">play</span>.<span style="color:#a6e22e">push</span>(<span style="color:#ae81ff">4</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">s1</span>.<span style="color:#a6e22e">play</span>, <span style="color:#a6e22e">s2</span>.<span style="color:#a6e22e">play</span>); <span style="color:#75715e">// [1,2,3,4]
+</span></span></span></code></pre></div><p>改变<code>s1</code>的<code>play</code>属性，会发现<code>s2</code>也跟着发生变化了，这是因为两个实例使用的是同一个原型对象，内存空间是共享的</p>
+<h3 id="构造函数继承">构造函数继承</h3>
+<p>借助 <code>call </code>调用<code>Parent</code>函数</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">Parent</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;parent1&#39;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Parent</span>.<span style="color:#a6e22e">prototype</span>.<span style="color:#a6e22e">getName</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> () {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">Child</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Parent1</span>.<span style="color:#a6e22e">call</span>(<span style="color:#66d9ef">this</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">type</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;child&#39;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">child</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Child</span>();
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">child</span>);  <span style="color:#75715e">// 没问题
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">child</span>.<span style="color:#a6e22e">getName</span>());  <span style="color:#75715e">// 会报错
+</span></span></span></code></pre></div><p>可以看到，父类原型对象中一旦存在父类之前自己定义的方法，那么子类将无法继承这些方法</p>
+<p>相比第一种原型链继承方式，父类的引用属性不会被共享，优化了第一种继承方式的弊端，但是只能继承父类的实例属性和方法，不能继承原型属性或者方法</p>
+<h3 id="组合继承">组合继承</h3>
+<p>前面我们讲到两种继承方式，各有优缺点。组合继承则将前两种方式继承起来</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">Parent3</span> () {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;parent3&#39;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">play</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>];
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Parent3</span>.<span style="color:#a6e22e">prototype</span>.<span style="color:#a6e22e">getName</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> () {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">Child3</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 第二次调用 Parent3()
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">Parent3</span>.<span style="color:#a6e22e">call</span>(<span style="color:#66d9ef">this</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">type</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;child3&#39;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 注意：这里调用了Parent3构造函数，而且Child3.prototype.constructor也改变了。同时Child3实例和原型对象上都存在name属性
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">Child3</span>.<span style="color:#a6e22e">prototype</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Parent3</span>();
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 手动挂上构造器，指向自己的构造函数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">Child3</span>.<span style="color:#a6e22e">prototype</span>.<span style="color:#a6e22e">constructor</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Child3</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">s3</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Child3</span>();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">s4</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Child3</span>();
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">s3</span>.<span style="color:#a6e22e">play</span>.<span style="color:#a6e22e">push</span>(<span style="color:#ae81ff">4</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">s3</span>.<span style="color:#a6e22e">play</span>, <span style="color:#a6e22e">s4</span>.<span style="color:#a6e22e">play</span>);  <span style="color:#75715e">// 不互相影响
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">s3</span>.<span style="color:#a6e22e">getName</span>()); <span style="color:#75715e">// 正常输出&#39;parent3&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">s4</span>.<span style="color:#a6e22e">getName</span>()); <span style="color:#75715e">// 正常输出&#39;parent3&#39;
+</span></span></span></code></pre></div><h3 id="原型式继承">原型式继承</h3>
+<p>首先了解下一个方法Object.create。该方法创建一个新对象，使用现有的对象来提供新创建的对象的 __proto __。</p>
+<p>缺点很明显：Object.create创建的实例对象只是一个浅拷贝</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">person</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;person&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">friends</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#34;p1&#34;</span>, <span style="color:#e6db74">&#34;p2&#34;</span>, <span style="color:#e6db74">&#34;p3&#34;</span>],
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">getName</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span> () {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span>;
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">person1</span> <span style="color:#f92672">=</span> Object.<span style="color:#a6e22e">create</span>(<span style="color:#a6e22e">person</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">person1</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;tom&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">person1</span>.<span style="color:#a6e22e">friends</span>.<span style="color:#a6e22e">push</span>(<span style="color:#e6db74">&#34;jerry&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">person2</span> <span style="color:#f92672">=</span> Object.<span style="color:#a6e22e">create</span>(<span style="color:#a6e22e">person</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">person2</span>.<span style="color:#a6e22e">friends</span>.<span style="color:#a6e22e">push</span>(<span style="color:#e6db74">&#34;lucy&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">person1</span>.<span style="color:#a6e22e">name</span>); <span style="color:#75715e">// tom
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">person1</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">person1</span>.<span style="color:#a6e22e">getName</span>()); <span style="color:#75715e">// true
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">person2</span>.<span style="color:#a6e22e">name</span>); <span style="color:#75715e">// person
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">person1</span>.<span style="color:#a6e22e">friends</span>); <span style="color:#75715e">// [&#34;p1&#34;, &#34;p2&#34;, &#34;p3&#34;,&#34;jerry&#34;,&#34;lucy&#34;]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">person2</span>.<span style="color:#a6e22e">friends</span>); <span style="color:#75715e">// [&#34;p1&#34;, &#34;p2&#34;, &#34;p3&#34;,&#34;jerry&#34;,&#34;lucy&#34;]
+</span></span></span></code></pre></div><h3 id="寄生式继承">寄生式继承</h3>
+<p>寄生式继承在上面继承基础上进行优化，利用这个浅拷贝的能力再进行增强，添加一些方法</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">person</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;person&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">friends</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#34;p1&#34;</span>, <span style="color:#e6db74">&#34;p2&#34;</span>, <span style="color:#e6db74">&#34;p3&#34;</span>],
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">getName</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span> () {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span>;
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">clone</span>(<span style="color:#a6e22e">original</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">clone</span> <span style="color:#f92672">=</span> Object.<span style="color:#a6e22e">create</span>(<span style="color:#a6e22e">original</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">clone</span>.<span style="color:#a6e22e">getFriends</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> () {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">friends</span>;
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">clone</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">person5</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">clone</span>(<span style="color:#a6e22e">person</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">person5</span>.<span style="color:#a6e22e">getName</span>()); <span style="color:#75715e">// person
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">person5</span>.<span style="color:#a6e22e">getFriends</span>()); <span style="color:#75715e">// [&#34;p1&#34;, &#34;p2&#34;, &#34;p3&#34;]
+</span></span></span></code></pre></div><h3 id="寄生组合式继承">寄生组合式继承</h3>
+<p>寄生组合式继承，借助解决普通对象的继承问题的<code> Object.create</code> 方法，在亲全面几种继承方式的优缺点基础上进行改造，这也是所有继承方式里面相对最优的继承方式</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">clone</span> (<span style="color:#a6e22e">parent</span>, <span style="color:#a6e22e">child</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 这里改用 Object.create 就可以减少组合继承中多进行一次构造的过程
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">child</span>.<span style="color:#a6e22e">prototype</span> <span style="color:#f92672">=</span> Object.<span style="color:#a6e22e">create</span>(<span style="color:#a6e22e">parent</span>.<span style="color:#a6e22e">prototype</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">child</span>.<span style="color:#a6e22e">prototype</span>.<span style="color:#a6e22e">constructor</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">child</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">Parent</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;parent&#39;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">play</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>];
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Parent</span>.<span style="color:#a6e22e">prototype</span>.<span style="color:#a6e22e">getName</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> () {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">Child</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Parent</span>.<span style="color:#a6e22e">call</span>(<span style="color:#66d9ef">this</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">friends</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;child5&#39;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">clone</span>(<span style="color:#a6e22e">Parent</span>, <span style="color:#a6e22e">Child</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Child</span>.<span style="color:#a6e22e">prototype</span>.<span style="color:#a6e22e">getFriends</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> () {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">friends</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">person</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Child</span>(); 
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">person</span>); <span style="color:#75715e">//{friends:&#34;child5&#34;,name:&#34;child5&#34;,play:[1,2,3],__proto__:Parent}
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">person</span>.<span style="color:#a6e22e">getName</span>()); <span style="color:#75715e">// parent
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">person</span>.<span style="color:#a6e22e">getFriends</span>()); <span style="color:#75715e">// child5
+</span></span></span></code></pre></div>
     </div>
 
     <div class="post-copyright">
@@ -219,8 +407,9 @@
 
 
     
-    
-    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+     <link href="//lib.baomitu.com/lightgallery/1.6.11/css/lightgallery.min.css" rel="stylesheet">  
+      
+     <script src="/js/vendor_gallery.min.js" async="" ></script>
     
   
 

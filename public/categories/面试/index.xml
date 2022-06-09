@@ -8,15 +8,6 @@
     <language>zh-CN</language>
     <lastBuildDate>Sat, 28 May 2022 23:39:07 +0800</lastBuildDate><atom:link href="https://heimei.io/categories/%E9%9D%A2%E8%AF%95/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>js继承</title>
-      <link>https://heimei.io/posts/js%E7%BB%A7%E6%89%BF/</link>
-      <pubDate>Sat, 28 May 2022 23:39:07 +0800</pubDate>
-      
-      <guid>https://heimei.io/posts/js%E7%BB%A7%E6%89%BF/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>js闭包</title>
       <link>https://heimei.io/posts/closure/</link>
       <pubDate>Sat, 28 May 2022 23:39:07 +0800</pubDate>
