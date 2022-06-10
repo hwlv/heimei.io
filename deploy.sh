@@ -13,3 +13,4 @@ cd /usr/share/nginx/html
 rm -rf *
 
 cp -rf /app/heimei.io/public/* /usr/share/nginx/html
+

@@ -9,10 +9,10 @@
     <lastBuildDate>Sat, 28 May 2022 23:39:07 +0800</lastBuildDate><atom:link href="https://heimei.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>js继承</title>
-      <link>https://heimei.io/posts/js%E7%BB%A7%E6%89%BF/</link>
+      <link>https://heimei.io/posts/js-inherit/</link>
       <pubDate>Sat, 28 May 2022 23:39:07 +0800</pubDate>
       
-      <guid>https://heimei.io/posts/js%E7%BB%A7%E6%89%BF/</guid>
+      <guid>https://heimei.io/posts/js-inherit/</guid>
       <description>什么是继承 继承（inheritance）是面向对象软件技术当中的一个概念。 如果一个类别B“继承自”另一个类别A，就把这个B称为“A的子类”，</description>
     </item>
     

@@ -1,4 +1,6 @@
 #/bin/bash
+echo -e "\033[41;37m start build ... \033[0m"
+./build.sh
 echo -e "\033[41;37m start package ... \033[0m"
 hugo -D ;
 echo -e "\033[41;37m start git push ... \033[0m"

@@ -10,7 +10,7 @@ tags: ["js继承"]
 
 
 
-![img](../../static/img/5d9c4450-72a3-11eb-85f6-6fac77c0c9b3.png)
+![img](/img/5d9c4450-72a3-11eb-85f6-6fac77c0c9b3.png)
 
 ## 什么是继承
 
