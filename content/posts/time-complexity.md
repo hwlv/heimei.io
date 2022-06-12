@@ -13,3 +13,11 @@ tags: ["数据结构","时间复杂度"]
 ### 时间复杂度
 
 ![image-20220611113028955](https://tva1.sinaimg.cn/large/e6c9d24egy1h345ahq8i8j20x70u0n3j.jpg)
+
+```mermaid
+graph 
+a --> b
+a --> c
+
+```
+
