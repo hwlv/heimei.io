@@ -9,10 +9,10 @@
     <lastBuildDate>Thu, 26 May 2022 23:39:07 +0800</lastBuildDate><atom:link href="https://heimei.io/tags/%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>数据结构-简介</title>
-      <link>https://heimei.io/posts/time-complexity/</link>
+      <link>https://heimei.io/back/time-complexity/</link>
       <pubDate>Thu, 26 May 2022 23:39:07 +0800</pubDate>
       
-      <guid>https://heimei.io/posts/time-complexity/</guid>
+      <guid>https://heimei.io/back/time-complexity/</guid>
       <description>时间复杂度 graph a --&amp;gt; b a --&amp;gt; c</description>
     </item>
     
