@@ -142,6 +142,16 @@
     </url>
   
     <url>
+      <loc>https://heimei.io/back/</loc>
+      
+      <lastmod>2022-05-24T23:39:07+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
       <loc>https://heimei.io/tags/javascript/</loc>
       
       <lastmod>2022-05-24T23:39:07+08:00</lastmod>
@@ -152,7 +162,7 @@
     </url>
   
     <url>
-      <loc>https://heimei.io/posts/js-prototype/</loc>
+      <loc>https://heimei.io/back/js-prototype/</loc>
       
       <lastmod>2022-05-24T23:39:07+08:00</lastmod>
       
@@ -245,16 +255,6 @@
       <loc>https://heimei.io/tags/%E7%BB%A7%E6%89%BF/</loc>
       
       <lastmod>2022-05-23T23:39:07+08:00</lastmod>
-      
-      
-      
-      
-    </url>
-  
-    <url>
-      <loc>https://heimei.io/back/</loc>
-      
-      <lastmod>2022-05-22T23:39:07+08:00</lastmod>
       
       
       
