@@ -1,3 +1,4 @@
 .DS_Store
 /.hugo_build.lock
 publish1.sh
+publish.sh
