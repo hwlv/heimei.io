@@ -43,5 +43,14 @@
       <description>说说闭包 一个函数和对其周围状态（lexical environment，词法环境）的引用捆绑在一起（或者说函数被引用包围），这样的组合就是闭包</description>
     </item>
     
+    <item>
+      <title></title>
+      <link>https://heimei.io/posts/about-site/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://heimei.io/posts/about-site/</guid>
+      <description>博客搭建小记 域名 heimei.io 因为io域名在it行业比较火，就在godaddy上找了这个域名，国内暂时没找到备案io域名的方法。 heimei 黑莓的意思。 主机 淘宝买</description>
+    </item>
+    
   </channel>
 </rss>
