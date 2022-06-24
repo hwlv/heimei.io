@@ -9,7 +9,7 @@ tags: ["nginx", "hugo", "博客" ]
 
 ### 域名
 
-[heimei.io](https://heimei.io) 因为io域名在it行业比较火，就在godaddy上找了这个域名，国内暂时没找到备案io域名的方法。 heimei 黑莓的意思。
+[heimei.io](https://heimei.io) 因为最近io域名比较火，就在godaddy上找了这个域名，国内暂时没找到备案io域名的方法。 heimei 黑莓的意思。
 
 ### 主机
 
