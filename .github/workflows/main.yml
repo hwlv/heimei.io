@@ -34,7 +34,7 @@ jobs:
           script: |
             cd /app/heimei.io
             git pull
-            hugo --destination=./public
+            hugo -D
             cd /usr/share/nginx/html
             rm -rf *
             cp -rf /app/heimei.io/public/* /usr/share/nginx/html
