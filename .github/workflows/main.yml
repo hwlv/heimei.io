@@ -34,6 +34,7 @@ jobs:
           script: |
             cd /app/heimei.io
             git pull
+            exec bash
             hugo -D
             cd /usr/share/nginx/html
             rm -rf *
