@@ -17,10 +17,11 @@ tags: ["nginx", "hugo", "博客" ]
 
 ### 博客
 
-用的Hugo，代码开源在这里https://github.com/hwlv/heimei.io
+用的Hugo，代码仓库在[这里](https://github.com/hwlv/heimei.io)
 
 ### 部署
-用github actions。yml[这里](https://github.com/hwlv/heimei.io/blob/main/.github/workflows/main.yml)。
+
+用github actions。yml[这里](https://github.com/hwlv/heimei.io/blob/main/.github/workflows/main.yml)
 每次本地完成后直接运行./publish.sh脚本，github会自动通过ci进行部署
 
 ### 反向代理及 HTTPS
