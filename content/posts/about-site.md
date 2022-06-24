@@ -1,7 +1,7 @@
 
 ---
 title: "博客搭建小记"
-date: 2022-05-22T23:39:07+08:00
+date: 2022-06-22T23:39:07+08:00
 draft: true
 categories: ["笔记"]
 tags: ["nginx", "hugo", "博客" ]
