@@ -43,7 +43,7 @@ jobs:
           port: 22
           script_stop: true
           script: |
-            cd app/heimei.io
+            cd /app/heimei.io
             git pull
             hugo --destination=./public
             cd /usr/share/nginx/html
