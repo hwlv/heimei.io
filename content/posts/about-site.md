@@ -15,7 +15,7 @@ tags: ["nginx", "hugo", "博客" ]
 
 香港主机，免备案。
 
-### 博客
+### 博客源码
 
 用的Hugo，代码仓库在[这里](https://github.com/hwlv/heimei.io)
 
@@ -39,11 +39,11 @@ server {
 # rewrite http跳转https
 ```
 
-https证书用 Let’s Encrypt ，可以永远使用
+https证书用 Let’s Encrypt ，可以永久使用
 
 ### 评论系统
 
-用的是https://utteranc.es/。主要特点就是基于 GitHub Issue 作评论系统。博客代码是开源的，评论放在issue里再好不过了。
+用的是https://utteranc.es/。主要特点就是基于 GitHub Issue 作评论系统。博客代码是开源的，评论放在issue里正合适。
 
 
 
