@@ -25,7 +25,7 @@ tags: ["nginx", "hugo", "博客" ]
 每次本地完成后直接运行./publish.sh脚本，github会自动通过ci进行部署
 
 ### 统计
-用的开源工具：https://github.com/plausible/analytics。官网plausible.io 可以免费体验一个月
+用的开源工具：https://github.com/plausible/analytics。官网 [plausible.io](https://plausible.io/) 可以免费体验一个月
 ### 反向代理及 HTTPS
 
 服务器Nginx
