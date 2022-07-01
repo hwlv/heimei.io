@@ -36,6 +36,5 @@ jobs:
             git pull
             /usr/local/hugo/hugo -D
             cd /usr/share/nginx/html
-            rm -rf *
             cp -rf /app/heimei.io/public/* /usr/share/nginx/html
             echo 'success!'
