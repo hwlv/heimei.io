@@ -41,7 +41,7 @@ server {
 # rewrite http跳转https
 ```
 
-https证书用 Let’s Encrypt ，可以永久使用
+https证书用 Let’s Encrypt ，可以永久使用。
 
 ### 评论系统
 
