@@ -26,11 +26,38 @@ tags: ["nginx", "hugo", "博客" ]
 
 ### 统计
 用的开源工具: [https://github.com/plausible/analytics](https://github.com/plausible/analytics)。官网 [plausible.io](https://plausible.io/) 可以免费体验一个月
-### 反向代理及 HTTPS
+### Nginx配置
 
-服务器Nginx
+gzip和https
 
 ```ini
+gzip on;
+gzip_comp_level 5;
+gzip_min_length 1k;
+gzip_buffers 4 16k;
+gzip_proxied any;
+gzip_vary on;
+gzip_types
+application/javascript
+application/x-javascript
+text/javascript
+text/css
+text/xml
+application/xhtml+xml
+application/xml
+application/atom+xml
+application/rdf+xml
+application/rss+xml
+application/geo+json
+application/json
+application/ld+json
+application/manifest+json
+application/x-web-app-manifest+json
+image/svg+xml
+text/x-cross-domain-policy;
+gzip_static on;  
+gzip_disable "MSIE [1-6]\.";
+
 server {
         listen       80 default_server;
         listen       [::]:80 default_server;
